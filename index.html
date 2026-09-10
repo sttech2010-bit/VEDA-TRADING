@@ -2596,9 +2596,12 @@
 
             document.addEventListener('keydown', (e) => {
     // Check karo ki user kisi input field mein type kar raha hai ya nahi
-    const tag = document.activeElement.tagName;
-    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
-        return; // Agar input field mein hai toh kuch mat karo
+    const el = e.target;
+    const tag = el.tagName;
+    
+    // Agar user input, textarea, select ya contenteditable mein hai toh shortcut mat chalao
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el.isContentEditable) {
+        return;
     }
     
     const map = { '1': 'home', '2': 'about', '3': 'products', '4': 'industries', '5': 'brands',

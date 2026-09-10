@@ -2595,13 +2595,19 @@
             }
 
             document.addEventListener('keydown', (e) => {
-                const map = { '1': 'home', '2': 'about', '3': 'products', '4': 'industries', '5': 'brands',
-                    '6': 'gallery', '7': 'credentials', '8': 'downloads', '9': 'contact' };
-                if (e.key >= '1' && e.key <= '9') {
-                    const sec = map[e.key];
-                    if (sec) navigateTo(sec);
-                }
-            });
+    // Check karo ki user kisi input field mein type kar raha hai ya nahi
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+        return; // Agar input field mein hai toh kuch mat karo
+    }
+    
+    const map = { '1': 'home', '2': 'about', '3': 'products', '4': 'industries', '5': 'brands',
+        '6': 'gallery', '7': 'credentials', '8': 'downloads', '9': 'contact' };
+    if (e.key >= '1' && e.key <= '9') {
+        const sec = map[e.key];
+        if (sec) navigateTo(sec);
+    }
+});
 
             console.log('🚀 VEDA TRADING — 9-Page Website Ready!');
             console.log('🎨 Dark Green (#166534) · Gold (#FBBF24) · Cream (#FFFBEB)');
